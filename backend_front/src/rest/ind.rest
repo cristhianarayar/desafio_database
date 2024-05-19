@@ -1,0 +1,4 @@
+GET http://localhost:3000/posts/get  
+
+###
+POST  http://localhost:3000/posts/post 
