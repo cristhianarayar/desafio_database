@@ -8,6 +8,7 @@ const getCtrLikeme = async (req,res,next) => {
         res.send(response)
         
     } catch (error) {
+        console.log(error)
         next(error)
     }
  
@@ -16,14 +17,40 @@ const getCtrLikeme = async (req,res,next) => {
 const postCtrLikeme = async (req,res,next) => {
 
     try {
-        const {titulo,url,descripcion} = req.body
-        
+        const {titulo,url,descripcion,like} = req.body
         const response = await ds_likeme.addLikeme(titulo,url,descripcion)
         res.send(response)
 
     } catch (error) {
+        console.log(error)
+        res.status(500).json({message:'Internal Server Error'})
         next(error)
     }
 }
 
-module.exports = {getCtrLikeme,postCtrLikeme}
+const deleteCtrLikeme = async (req,res,next) => {
+    try {
+        const {id} = req.params
+        const response = await ds_likeme.removeLikeme(id)
+        res.send(response)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message:'Internal Server Error'})
+        next(error)
+    }
+    
+}
+
+const updateCtrlLikeme = async (req,res,next) => {
+    try {
+        const {id} = req.params
+        const response = await ds_likeme.updateLikeme(id)
+        res.send(response)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message:'Internal Server Error'})
+        next(error)
+    }
+}
+
+module.exports = {getCtrLikeme,postCtrLikeme,deleteCtrLikeme,updateCtrlLikeme}
