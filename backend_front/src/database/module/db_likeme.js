@@ -8,7 +8,7 @@ const writeLikeme = async () => {
         if(rows.length){
             return rows
         }else{
-            return ("Sin Datos Para Mostrar")
+            return []
         }
         
     } catch(error){
